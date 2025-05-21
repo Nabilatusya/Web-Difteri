@@ -23,7 +23,7 @@ Route::get('/', function(){
 // Proteksi halaman dashboard agar hanya admin bisa mengakses
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
-        return view('home');
+        return view('layouts.admin.dashboard_admin.peta_kerawanan');
     });
 
     //data_puskemas
@@ -46,10 +46,20 @@ Route::middleware('auth')->group(function () {
         return view('layouts.admin.dashboard_admin.peta_kerawanan'); // Pastikan file ini ada di resources/views
     })->name('peta.difteri');
 
+    //visualisasi pemataan tapi pake leaflet - mapping blade
+    Route::get('/mapping-difteri', function(){
+        return view('layouts.admin.dashboard_admin.mapping');
+    })->name('mapping-difteri');
+
+    // Route::get('/mapping-difteri/{year}', [MapController::class, 'showMap'])->name('mapping-difteri');
+
     //visualisasi grafik persebaran
     Route::get('/grafik/difteri', function () {
         return view('layouts.admin.dashboard_admin.grafik_persebaran'); // Pastikan file ini ada di resources/views
     })->name('grafik.difteri');
+
+    //route jumlah kasus di peta_kerawanan
+    //Route::get('/peta-kerawanan', [DataDifteriController::class, 'petaKerawanan'])->name('peta.kerawanan');
 
     //peta kerawanan
     // Route::get('/map/{year}', [MapController::class, 'showMap'])->name('map.show');
@@ -60,6 +70,7 @@ Route::middleware('auth')->group(function () {
 
 //user-puskesmas
 Route::get('/user/index/puskesmas', [PuskesmasController::class, 'indexUser'])->name('user.puskesmas.index');
+Route::get('/puskesmas/profile/{id}', [PuskesmasController::class, 'profile'])->name('puskesmas.profile');
 
 //user-kecamatan
 Route::get('/user/index/kecamatan', [KecamatanController::class, 'indexUser'])->name('user.kecamatan.index');
@@ -68,6 +79,14 @@ Route::get('/user/index/kecamatan', [KecamatanController::class, 'indexUser'])->
 Route::get('/user/index/grafik', function () {
     return view('layouts.user.grafik_persebaran.index_grafik'); // Pastikan file ini ada di resources/views
 })->name('user.grafik.index');
+
+//user peta persebaran
+Route::get('/peta-khusus', function () {
+    return view('layouts.user.peta_khusus.peta_difteri'); // Pastikan file ini ada di resources/views
+})->name('peta.khusus');
+
+//user-data difteri
+Route::get('/data-klaster', [DataDifteriController::class, 'indexUser'])->name('data.klaster');
 
 
 

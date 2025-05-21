@@ -55,7 +55,7 @@
             </thead>
             <tbody class="bg-gray-100">
                 @foreach ($puskesmas as $item)
-                <tr class="hover:bg-[#4b65c9] hover:text-white transition duration-300 ease-in-out">
+                <tr onclick="window.location='{{ route('puskesmas.profile', $item->id_puskesmas) }}';" class="cursor-pointer hover:bg-[#4b65c9] hover:text-white transition duration-300 ease-in-out">
                     <td class="px-6 py-4 text-center">{{ $item->nama_puskesmas }}</td>
                     <td class="px-6 py-4 text-center">{{ $item->alamat_puskesmas }}</td>
                     <td class="px-6 py-4 text-center">{{ $item->telp_puskesmas }}</td>

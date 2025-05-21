@@ -58,10 +58,25 @@ class DataDifteriController extends Controller
 
     public function indexUser()
     {
-        //menampilkan semua data difteri
-        $dataDifteri = DataDifteri::all();
-        return view('layouts.user.data_klaster.index_klaster', compact('tahun', 'kecamatan'));
+        // Menampilkan semua data difteri
+        $dataDifteri = DataDifteri::with(['tahun', 'kecamatan'])->paginate(31);
+
+        // Ambil data tahun untuk dikirim ke tampilan
+        $tahun = Tahun::all();
+        $kecamatan = Kecamatan::all();
+
+    return view('layouts.user.data_klaster.index_klaster', compact('dataDifteri', 'tahun', 'kecamatan'));
     }
+
+    // public function petaKerawanan()
+    // {
+    //     $jumlahKasusDifteri = DataDifteri::sum('jml_kasus_difteri');
+    //     $tahun = Tahun::all();
+    //     $kecamatan = Kecamatan::all();
+    //     $dataDifteri = DataDifteri::with(['tahun', 'kecamatan'])->paginate(31);
+
+    //     return view('layouts.admin.dashboard_admin.peta_kerawanan', compact('dataDifteri', 'tahun', 'kecamatan', 'jumlahKasusDifteri'));
+    // }
 
     //menampilkan form tambah data difteri
     public function create()

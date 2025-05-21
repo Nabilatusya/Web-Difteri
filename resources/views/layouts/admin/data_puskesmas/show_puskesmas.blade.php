@@ -13,24 +13,62 @@
         </div>
 
         <!-- Wrapper with white background for the form inputs -->
-        <div class="bg-white p-6 rounded-[20px] shadow-md text-[#1E2C67]">
-            <!-- Nama Puskesmas -->
-            <div class="mb-4">
+        <div class="bg-white p-6 rounded-[20px] shadow-md text-[#1E2C67] space-y-6">
+
+            <div>
                 <h2 class="text-lg font-semibold">Nama Puskesmas</h2>
                 <p class="text-gray-600">{{ $puskesmas->nama_puskesmas }}</p>
             </div>
 
-            <!-- Alamat Puskesmas -->
-            <div class="mb-4">
+            <div>
                 <h2 class="text-lg font-semibold">Alamat</h2>
                 <p class="text-gray-600">{{ $puskesmas->alamat_puskesmas }}</p>
             </div>
 
-            <!-- Nomor Telepon -->
-            <div class="mb-4">
+            <div>
                 <h2 class="text-lg font-semibold">Nomor Telepon</h2>
                 <p class="text-gray-600">{{ $puskesmas->telp_puskesmas }}</p>
             </div>
+
+            <div>
+                <h2 class="text-lg font-semibold">Identitas Puskesmas</h2>
+                <p class="text-gray-600">{{ $puskesmas->identitas_puskesmas }}</p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-semibold">Gambar Puskesmas</h2>
+                @if($puskesmas->gambar_puskesmas)
+                    <img src="{{ asset('storage/' . $puskesmas->gambar_puskesmas) }}" alt="Gambar Puskesmas" class="rounded-lg w-full max-h-64 object-cover mt-2">
+                @else
+                    <p class="text-gray-600 italic">Belum ada gambar</p>
+                @endif
+            </div>
+
+            <div>
+                <h2 class="text-lg font-semibold">Motto</h2>
+                <p class="text-gray-600">{{ $puskesmas->motto }}</p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-semibold">Visi</h2>
+                <p class="text-gray-600">{{ $puskesmas->visi }}</p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-semibold">Misi</h2>
+                <p class="text-gray-600">{{ $puskesmas->misi }}</p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-semibold">Jam Layanan</h2>
+                <p class="text-gray-600">{{ $puskesmas->jam_layanan }}</p>
+            </div>
+
+            <div>
+                <h2 class="text-lg font-semibold">Pelayanan</h2>
+                <p class="text-gray-600">{{ $puskesmas->pelayanan }}</p>
+            </div>
+
         </div>
     </div>
 </div>

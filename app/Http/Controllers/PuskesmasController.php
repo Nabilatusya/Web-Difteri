@@ -75,15 +75,40 @@ class PuskesmasController extends Controller
         $validatedData = $request->validate([
             'nama_puskesmas' => 'required|string|max:255',
             'alamat_puskesmas' => 'required|string|max:255',
-            'telp_puskesmas' => "required|string|max:50"
+            'telp_puskesmas' => "required|string|max:50",
+
+            //tambahan validate baru untuk kolom baru di profile puskesmas
+            'identitas_puskesmas' => 'nullable|string',
+            'gambar_puskesmas' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'motto' => 'nullable|string',
+            'visi' => 'nullable|string',
+            'misi' => 'nullable|string',
+            'jam_layanan' => 'nullable|string',
+            'pelayanan' => 'nullable|string'
         ]);
 
+        // handle upload gambar
+        if ($request->hasFile('gambar_puskesmas')) {
+            $file = $request->file('gambar_puskesmas');
+            $path = $file->store('gambar_puskesmas', 'public'); // Simpan di storage/app/public/gambar_puskesmas
+            $validatedData['gambar_puskesmas'] = $path;
+        }
+        // dd($validatedData);
 
         //simpan data puskesmas ke dalam database
         Puskesmas::create([
             'nama_puskesmas' => $request->nama_puskesmas,
             'alamat_puskesmas' => $request->alamat_puskesmas,
             'telp_puskesmas' => $request->telp_puskesmas,
+
+             // simpan field tambahan untuk profile puskesmas
+            'identitas_puskesmas' => $request->identitas_puskesmas,
+            'gambar_puskesmas' => $validatedData['gambar_puskesmas'],
+            'motto' => $request->motto,
+            'visi' => $request->visi,
+            'misi' => $request->misi,
+            'jam_layanan' => $request->jam_layanan,
+            'pelayanan' => $request->pelayanan,
         ]);
 
         //redirect dgn pesan sukses
@@ -114,12 +139,30 @@ class PuskesmasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->file('gambar_puskesmas'));
+
         //validasi data
         $validatedData = $request->validate([
             'nama_puskesmas' => 'required|string|max:255',
             'alamat_puskesmas' => 'required|string|max:255',
-            'telp_puskesmas' => "required|string|max:50"
+            'telp_puskesmas' => "required|string|max:50",
+
+            //tambahan validate baru untuk kolom baru di profile puskesmas
+            'identitas_puskesmas' => 'nullable|string',
+            'gambar_puskesmas' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'motto' => 'nullable|string',
+            'visi' => 'nullable|string',
+            'misi' => 'nullable|string',
+            'jam_layanan' => 'nullable|string',
+            'pelayanan' => 'nullable|string'
         ]);
+
+        if ($request->hasFile('gambar_puskesmas')) {
+            $file = $request->file('gambar_puskesmas');
+            $path = $file->store('gambar_puskesmas', 'public'); // Simpan di storage/app/public/gambar_puskesmas
+            $validatedData['gambar_puskesmas'] = $path;
+        }
+        // dd($validatedData);
 
         //cari puskesmas berdasarkan ID
         $puskesmas = Puskesmas::findOrFail($id);
@@ -141,5 +184,13 @@ class PuskesmasController extends Controller
 
         // Redirect dengan pesan sukses
         return redirect()->route('puskesmas.index')->with('success', 'Puskesmas berhasil dihapus.');
+    }
+
+    //method untuk profile puskesmas
+    public function profile($id)
+    {
+        //menampilkan profil puskesmas berdasarkan ID
+        $puskesmas = Puskesmas::findOrFail($id);
+        return view('layouts.user.data_puskesmas.profile_puskesmas', compact('puskesmas'));
     }
 }

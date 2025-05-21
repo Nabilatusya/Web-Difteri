@@ -16,5 +16,12 @@ class Puskesmas extends Model
         'nama_puskesmas',
         'alamat_puskesmas',
         'telp_puskesmas',
+        'identitas_puskesmas',
+        'gambar_puskesmas',
+        'motto',
+        'visi',
+        'misi',
+        'jam_layanan',
+        'pelayanan',
     ];
 }

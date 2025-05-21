@@ -13,7 +13,7 @@
         <!-- Embed Map -->
         <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
             <iframe
-                src="http://localhost:3000/public/question/a3b7e277-4673-4f4c-9171-5b4b4bf94d97"
+                src="http://localhost:3000/public/dashboard/68310243-3cb1-4242-91a3-2de6ff5f7d40"
                 frameborder="0"
                 width="100%"
                 height="600px"

@@ -252,10 +252,23 @@
                         </a>
                         <div class="collapse" id="dashboardDropdown">
                             <ul class="list-unstyled ps-3">
-                                <li><a href="{{ route('peta.difteri') }}" class="text-white d-block py-2 px-4 mb-2 hover:bg-[#1E2C67] rounded-lg"><i class="bi bi-map me-2"></i> Peta Kerawanan</a></li>
-                                <li><a href="{{ route('grafik.difteri') }}" class="text-white d-block py-2 px-4 mb-2 hover:bg-[#1E2C67] rounded-lg"><i class="bi bi-bar-chart me-2"></i> Grafik Persebaran</a></li>
+                                <!-- Peta Kerawanan dengan ikon peta -->
+                                <li><a href="{{ route('peta.difteri') }}" class="text-white d-block py-2 px-4 mb-2 hover:bg-[#1E2C67] rounded-lg">
+                                    <i class="bi bi-globe me-2"></i> Peta Kerawanan</a>
+                                </li>
+
+                                <!-- Peta Kerawanan (menu kedua) dengan ikon zoom-in -->
+                                <li><a href="{{ route('mapping-difteri') }}" class="text-white d-block py-2 px-4 mb-2 hover:bg-[#1E2C67] rounded-lg">
+                                    <i class="bi bi-zoom-in me-2"></i> Peta Kerawanan</a>
+                                </li>
+
+                                <!-- Grafik Persebaran dengan ikon chart -->
+                                <li><a href="{{ route('grafik.difteri') }}" class="text-white d-block py-2 px-4 mb-2 hover:bg-[#1E2C67] rounded-lg">
+                                    <i class="bi bi-graph-up me-2"></i> Grafik Persebaran</a>
+                                </li>
                             </ul>
                         </div>
+
                     </li>
                     <!-- Single links -->
                     <li>

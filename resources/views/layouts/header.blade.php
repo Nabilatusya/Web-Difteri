@@ -16,7 +16,7 @@
 
         .nav-link {
             color: #3148A8;
-            font-size: 23px;
+            font-size: 18px;
             font-weight: 500;
             transition: all 0.3s ease-in-out;
             position: relative;
@@ -43,7 +43,7 @@
             background: #3148A8;
             color: #FFFFFF;
             padding: 8px 32px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             border-radius: 24px;
             transition: all 0.3s ease-in-out;
@@ -90,45 +90,51 @@
 
         @media (max-width: 640px) {
             .container {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                justify-content: space-between;
             }
 
             .nav-link {
-                font-size: 18px;
+                font-size: 16px;
+                padding: 0 10px;
             }
 
             .login-btn {
-                font-size: 16px;
-                padding: 6px 24px;
+                font-size: 14px;
+                padding: 6px 16px;
+            }
+
+            .hidden {
+                display: none;
             }
 
             #menu-btn {
                 display: block;
             }
 
-            .hidden {
-                display: none;
+            .mobile-link {
+                padding: 12px 20px;
+                font-size: 18px;
             }
         }
+
     </style>
 </head>
 <body>
-    <nav class="nav-bar fixed top-0 left-0 w-full z-10 py-4 px-6" style=" font-family: 'Poppins', sans-serif;">
+    <nav class="nav-bar fixed top-0 left-0 w-full z-10 py-4 px-6" style="font-family: 'Poppins', sans-serif;">
         <div class="container mx-auto">
             <h1 class="text-[23px] font-semibold text-[#3148A8]">Difteri Dashboard</h1>
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Umum</a>
-                <a href="{{ url('/peta-khusus') }}" class="nav-link {{ request()->is('peta-khusus') ? 'active' : '' }}">Peta Khusus</a>
-                <a href="{{ url('/data-difteri') }}" class="nav-link {{ request()->is('data-difteri') ? 'active' : '' }}">Data Difteri</a>
-                {{-- <a href="{{ route('user.kecamatan.index') }}" class="nav-link {{ request()->routeIs('user.kecamatan.index') ? 'active' : '' }}">Data Klaster</a> --}}
+                <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
+                <a href="{{ url('/peta-khusus') }}" class="nav-link {{ request()->is('peta-khusus') ? 'active' : '' }}">Peta Kasus</a>
+                <a href="{{ url('/data-klaster') }}" class="nav-link {{ request()->is('data-klaster') ? 'active' : '' }}">Data Difteri</a>
                 <a href="{{ route('user.grafik.index') }}" class="nav-link {{ request()->is('user.grafik.index') ? 'active' : '' }}">Grafik</a>
                 <a href="{{ route('user.puskesmas.index') }}" class="nav-link {{ request()->routeIs('user.puskesmas.index*') ? 'active' : '' }}">Puskesmas</a>
                 <a href="{{ route('login') }}" class="login-btn">Login</a>
             </div>
 
             <!-- Button Menu untuk Mobile -->
-            <button id="menu-btn" class="md:hidden text-[#3148A8] focus:outline-none">
+            <button id="menu-btn" class="md:hidden text-[#3148A8]">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -137,10 +143,9 @@
 
         <!-- Menu Dropdown untuk Mobile -->
         <div id="mobile-menu" class="absolute top-16 left-0 w-full bg-white shadow-md hidden md:hidden">
-            <a href="{{ url('/') }}" class="mobile-link {{ request()->is('/') ? 'active' : '' }}">Umum</a>
-            <a href="{{ url('/peta-khusus') }}" class="mobile-link {{ request()->is('peta-khusus') ? 'active' : '' }}">Peta Khusus</a>
-            <a href="{{ url('/data-difteri') }}" class="mobile-link {{ request()->is('data-difteri') ? 'active' : '' }}">Data Difteri</a>
-            {{-- <a href="{{ route('user.kecamatan.index') }}" class="mobile-link {{ request()->routeIs('user.kecamatan.index') ? 'active' : '' }}">Data Klaster</a> --}}
+            <a href="{{ url('/') }}" class="mobile-link {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
+            <a href="{{ url('/peta-khusus') }}" class="mobile-link {{ request()->is('peta-khusus') ? 'active' : '' }}">Peta Kasus</a>
+            <a href="{{ url('/data-klaster') }}" class="mobile-link {{ request()->is('data-klaster') ? 'active' : '' }}">Data Difteri</a>
             <a href="{{ route('user.grafik.index') }}" class="mobile-link {{ request()->is('user.grafik.index') ? 'active' : '' }}">Grafik</a>
             <a href="{{ route('user.puskesmas.index') }}" class="mobile-link {{ request()->routeIs('user.puskesmas.index*') ? 'active' : '' }}">Puskesmas</a>
             <a href="{{ route('login') }}" class="mobile-link text-center bg-[#3148A8] text-white">Login</a>
