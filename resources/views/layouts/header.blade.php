@@ -128,7 +128,21 @@
                 <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
                 <a href="{{ url('/peta-khusus') }}" class="nav-link {{ request()->is('peta-khusus') ? 'active' : '' }}">Peta Kasus</a>
                 <a href="{{ url('/data-klaster') }}" class="nav-link {{ request()->is('data-klaster') ? 'active' : '' }}">Data Difteri</a>
-                <a href="{{ route('user.grafik.index') }}" class="nav-link {{ request()->is('user.grafik.index') ? 'active' : '' }}">Grafik</a>
+                {{-- Grafik dengan Submenu --}}
+                <div class="relative group">
+                    <button class="nav-link flex items-center gap-1 {{ request()->routeIs('user.grafik.index') || request()->is('grafik-persebaran') || request()->is('tren-kasus-kecamatan') ? 'active' : '' }}">
+                        Grafik
+                        <svg class="w-4 h-4 transform transition duration-200 group-hover:rotate-180" fill="none" stroke="#3148A8" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Submenu -->
+                    <div class="absolute left-0 mt-2 bg-white rounded-md shadow-lg z-50 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
+                        <a href="{{ route('user.grafik.index') }}" class="block px-4 py-2 text-sm text-[#3148A8] hover:bg-[#f3f4f6] transition-all duration-200">📍 Grafik Persebaran</a>
+                        <a href="{{ route('user.tren.kecamatan') }}" class="block px-4 py-2 text-sm text-[#3148A8] hover:bg-[#f3f4f6] transition-all duration-200">📊 Tren Kasus Kecamatan</a>
+                    </div>
+                </div>
                 <a href="{{ route('user.puskesmas.index') }}" class="nav-link {{ request()->routeIs('user.puskesmas.index*') ? 'active' : '' }}">Puskesmas</a>
                 <a href="{{ route('login') }}" class="login-btn">Login</a>
             </div>
@@ -146,7 +160,20 @@
             <a href="{{ url('/') }}" class="mobile-link {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
             <a href="{{ url('/peta-khusus') }}" class="mobile-link {{ request()->is('peta-khusus') ? 'active' : '' }}">Peta Kasus</a>
             <a href="{{ url('/data-klaster') }}" class="mobile-link {{ request()->is('data-klaster') ? 'active' : '' }}">Data Difteri</a>
-            <a href="{{ route('user.grafik.index') }}" class="mobile-link {{ request()->is('user.grafik.index') ? 'active' : '' }}">Grafik</a>
+            <!-- Dropdown Grafik -->
+            <div>
+                <button id="grafik-toggle" class="flex items-center justify-between w-full font-medium hover:text-blue-700">
+                    <span>Grafik</span>
+                    <svg id="arrow-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="grafik-submenu" class="ml-4 mt-2 hidden space-y-1 text-sm">
+                    <a href="{{ route('user.grafik.index') }}" class="block hover:text-blue-700">📈 Grafik Umum</a>
+                    <a href="{{ url('/grafik-persebaran') }}" class="block hover:text-blue-700">📍 Grafik Persebaran</a>
+                    <a href="{{ url('/tren-kasus-kecamatan') }}" class="block hover:text-blue-700">📊 Tren Kasus Kecamatan</a>
+                </div>
+            </div>
             <a href="{{ route('user.puskesmas.index') }}" class="mobile-link {{ request()->routeIs('user.puskesmas.index*') ? 'active' : '' }}">Puskesmas</a>
             <a href="{{ route('login') }}" class="mobile-link text-center bg-[#3148A8] text-white">Login</a>
         </div>

@@ -80,6 +80,12 @@ Route::get('/user/index/grafik', function () {
     return view('layouts.user.grafik_persebaran.index_grafik'); // Pastikan file ini ada di resources/views
 })->name('user.grafik.index');
 
+//user-tren-kasus
+Route::get('/user/index/tren', [KecamatanController::class, 'trenKecamatan'])->name('user.tren.kecamatan');
+//Route::get('/user/index/tren', function () {
+//     return view('layouts.user.grafik_persebaran.index_tren_kasus'); // Pastikan file ini ada di resources/views
+// })->name('user.tren.index');
+
 //user peta persebaran
 Route::get('/peta-khusus', function () {
     return view('layouts.user.peta_khusus.peta_difteri'); // Pastikan file ini ada di resources/views

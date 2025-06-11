@@ -114,4 +114,11 @@ class KecamatanController extends Controller
         //redirect dgn pesan suskes
         return redirect()->route('kecamatan.index')->with('success', 'Kecamatan berhasil dihapus');
     }
+
+    //tren-kecamatan di user
+    public function trenKecamatan()
+    {
+        $kecamatans = Kecamatan::all();
+        return view('layouts.user.grafik_persebaran.index_tren_kasus', compact('kecamatans'));
+    }
 }
